@@ -1,7 +1,7 @@
 //
 // Created by Alejandro  Otero on 2019-09-03.
 //
-
+#include <iostream>
 #include "matriz.h"
 
 Matriz::Matriz() {
@@ -21,11 +21,19 @@ void Matriz::llenar() {
 
 }
 
-void Matriz::mulitplicacion(const Matriz &, const Matriz &) {
-
+void Matriz::mulitplicacion(const Matriz& matrix) {
+    if (columnas==matrix.columnas){
+        for (int i=0; i<filas; i++){
+            for (int j=0; j<matrix.columnas; j++){
+                for (int x=0; x<columnas; x++)
+                    mat[i][j]=mat[i][x]*matrix[x][j];
+            }
+        }
+    }else
+        std::cout<<"No se puede multiplicar";
 }
 
-void Matriz::escalar(int n, const Matriz &) {
+void Matriz::escalar(int n) {
     for (int i=0; i<filas;i++){
         for (int j=0; j<columnas; j++){
             mat[i][j]=mat[i][j]*n;
@@ -33,11 +41,18 @@ void Matriz::escalar(int n, const Matriz &) {
     }
 }
 
-void Matriz::suma(const Matriz &, const Matriz &) {
-
+void Matriz::suma(const Matriz& matrix) {
+    if (filas==matrix.filas and columnas==matrix.columnas){
+        for (int i=0; i<filas; i++){
+            for (int j=0; j<columnas; j++){
+                mat[i][j]=matrix[i][j]+mat[i][j];
+            }
+        }
+    } else
+        std::cout<<"No es posible";
 }
 
-void Matriz::trasposicion(const Matriz &) {
+void Matriz::trasposicion() {
     for (int i=0; i<filas; i++){
         for (int j=0; j<columnas;j++){
             mat[i][j]=mat[j][i];
@@ -46,6 +61,6 @@ void Matriz::trasposicion(const Matriz &) {
 }
 
 Matriz::~Matriz() {
-
+    delete [] mat;
 }
 
