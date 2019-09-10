@@ -5,7 +5,9 @@
 #include "matriz.h"
 
 Matriz::Matriz() {
-
+    mat=nullptr;
+    filas=0;
+    columnas=0;
 }
 
 Matriz::Matriz(int _columnas, int _filas) {
@@ -18,7 +20,11 @@ Matriz::Matriz(int _columnas, int _filas) {
 }
 
 void Matriz::llenar() {
-
+    for (int i=0;i<filas;i++){
+        for (int j=0;j<columnas;j++){
+            mat[i][j]=(rand()%5);
+        }
+    }
 }
 
 void Matriz::mulitplicacion(const Matriz& matrix) {
@@ -56,6 +62,14 @@ void Matriz::trasposicion() {
     for (int i=0; i<filas; i++){
         for (int j=0; j<columnas;j++){
             mat[i][j]=mat[j][i];
+        }
+    }
+}
+
+void Matriz::mostrar() {
+    for (int i=0;i<filas;i++){
+        for (int j=0;j<columnas;j++){
+            std::cout<<mat[i][j];
         }
     }
 }
