@@ -19,5 +19,6 @@ public:
     void escalar(int, const Matriz&);
     void suma(const Matriz&, const Matriz&);
     void trasposicion(const Matriz&);
+    void mostrar();
     ~Matriz();
 };
